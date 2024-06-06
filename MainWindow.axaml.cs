@@ -44,11 +44,12 @@ public partial class MainWindow : Window
         Image.Source = Bitmap;
     }
 
-    private static long Calculate(int x, int y, int z, int algorithm)
+    private static int Calculate(int x, int y, int z, int algorithm)
     {
         return algorithm switch
         {
-            1 => x * y % z,
+            0 => x * y % z,
+            1 => x - y,
             _ => x * y
         };
     }
