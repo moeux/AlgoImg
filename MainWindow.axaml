@@ -18,6 +18,10 @@
                 <NumericUpDown Value="50" Minimum="2" Maximum="1000" FormatString="0" x:Name="Z" />
             </StackPanel>
             <StackPanel Orientation="Vertical" Margin="10" Spacing="5">
+                <TextBlock Text="Algorithm" TextAlignment="Center" />
+                <NumericUpDown Value="1" Minimum="1" FormatString="0" x:Name="Algorithm" />
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Margin="10" Spacing="5">
                 <TextBlock Text="Scale" TextAlignment="Center" />
                 <NumericUpDown Value="2" Minimum="1" Maximum="1000" FormatString="0" x:Name="Scale" />
             </StackPanel>

@@ -13,6 +13,7 @@ public partial class MainWindow : Window
 
         Z.ValueChanged += (_, _) => Update();
         Scale.ValueChanged += (_, _) => Update();
+        Algorithm.Maximum = 2;
 
         Update();
     }
@@ -21,10 +22,13 @@ public partial class MainWindow : Window
 
     private void Update()
     {
-        UpdateBitmap((int)(Z.Value ?? Z.Minimum), (int)(Scale.Value ?? Scale.Minimum));
+        UpdateBitmap(
+            (int)(Z.Value ?? Z.Minimum),
+            (int)(Scale.Value ?? Scale.Minimum),
+            (int)(Algorithm.Value ?? Algorithm.Minimum) - 1);
     }
 
-    private void UpdateBitmap(int z, int scale)
+    private void UpdateBitmap(int z, int scale, int algorithm)
     {
         var dc = Bitmap.CreateDrawingContext();
         var brush = new SolidColorBrush(Colors.Black);
@@ -34,7 +38,7 @@ public partial class MainWindow : Window
         for (var x = 0; x < Bitmap.Size.Width; x++)
         for (var y = 0; y < Bitmap.Size.Height; y++)
         {
-            brush.Opacity = 1D * Calculate(x, y, z, 1) / (z - 1);
+            brush.Opacity = 1D * Calculate(x, y, z, algorithm) / (z - 1);
             dc.FillRectangle(brush, new Rect(x * scale, y * scale, scale, scale));
         }
 
