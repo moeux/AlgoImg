@@ -14,8 +14,8 @@
         <Image Source="{Binding Bitmap, Mode=TwoWay}" MaxHeight="256" MaxWidth="256" x:Name="Image" />
         <StackPanel Orientation="Horizontal" Margin="20" Spacing="10" HorizontalAlignment="Center">
             <StackPanel Orientation="Vertical" Margin="10" Spacing="5">
-                <TextBlock Text="Modulo" TextAlignment="Center" />
-                <NumericUpDown Value="50" Minimum="1" Maximum="1000" FormatString="0" x:Name="Modulo" />
+                <TextBlock Text="Z" TextAlignment="Center" />
+                <NumericUpDown Value="50" Minimum="2" Maximum="1000" FormatString="0" x:Name="Z" />
             </StackPanel>
             <StackPanel Orientation="Vertical" Margin="10" Spacing="5">
                 <TextBlock Text="Scale" TextAlignment="Center" />

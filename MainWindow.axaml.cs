@@ -11,7 +11,7 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
 
-        Modulo.ValueChanged += (_, _) => UpdateBitmap();
+        Z.ValueChanged += (_, _) => UpdateBitmap();
         Scale.ValueChanged += (_, _) => UpdateBitmap();
 
         UpdateBitmap();
@@ -21,7 +21,7 @@ public partial class MainWindow : Window
 
     private void UpdateBitmap()
     {
-        var modulo = (int)(Modulo.Value ?? Modulo.Minimum);
+        var z = (int)(Z.Value ?? Z.Minimum);
         var scale = (int)(Scale.Value ?? Scale.Minimum);
         var dc = Bitmap.CreateDrawingContext();
         var brush = new SolidColorBrush();
