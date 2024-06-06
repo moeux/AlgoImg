@@ -11,34 +11,36 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
 
-        Z.ValueChanged += (_, _) => UpdateBitmap();
-        Scale.ValueChanged += (_, _) => UpdateBitmap();
+        Z.ValueChanged += (_, _) => Update();
+        Scale.ValueChanged += (_, _) => Update();
 
-        UpdateBitmap();
+        Update();
     }
 
     public RenderTargetBitmap Bitmap { get; set; } = new(new PixelSize(256, 256));
 
-    private void UpdateBitmap()
+    private void Update()
     {
-        var z = (int)(Z.Value ?? Z.Minimum);
-        var scale = (int)(Scale.Value ?? Scale.Minimum);
+        UpdateBitmap((int)(Z.Value ?? Z.Minimum), (int)(Scale.Value ?? Scale.Minimum));
+    }
+
+    private void UpdateBitmap(int z, int scale)
+    {
         var dc = Bitmap.CreateDrawingContext();
-        var brush = new SolidColorBrush();
+        var brush = new SolidColorBrush(Colors.Black);
 
         dc.FillRectangle(Brushes.White, new Rect(Bitmap.Size));
 
         for (var x = 0; x < Bitmap.Size.Width; x++)
         for (var y = 0; y < Bitmap.Size.Height; y++)
         {
-            var scaled = uint.MaxValue * Calculate(x, y, z, 1) / (z - 1);
-            brush.Color = Color.FromUInt32((uint)scaled);
+            brush.Opacity = 1D * Calculate(x, y, z, 1) / (z - 1);
             dc.FillRectangle(brush, new Rect(x * scale, y * scale, scale, scale));
         }
 
         dc.Dispose();
 
-        // Forces rendering of image
+        // Forces re-rendering of image
         Image.Source = Bitmap;
     }
 
