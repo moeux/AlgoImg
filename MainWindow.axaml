@@ -2,8 +2,25 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        xmlns:algoImages="clr-namespace:AlgoImages"
+        mc:Ignorable="d"
+        CanResize="False"
+        SizeToContent="WidthAndHeight"
         x:Class="AlgoImages.MainWindow"
-        Title="AlgoImages">
-    Welcome to Avalonia!
+        Title="AlgoImages"
+        x:DataType="algoImages:MainWindow">
+
+    <StackPanel Orientation="Vertical">
+        <Image Source="{Binding Bitmap, Mode=TwoWay}" MaxHeight="256" MaxWidth="256" x:Name="Image" />
+        <StackPanel Orientation="Horizontal" Margin="20" Spacing="10" HorizontalAlignment="Center">
+            <StackPanel Orientation="Vertical" Margin="10" Spacing="5">
+                <TextBlock Text="Modulo" TextAlignment="Center" />
+                <NumericUpDown Value="50" Minimum="1" Maximum="1000" FormatString="0" x:Name="Modulo" />
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Margin="10" Spacing="5">
+                <TextBlock Text="Scale" TextAlignment="Center" />
+                <NumericUpDown Value="2" Minimum="1" Maximum="1000" FormatString="0" x:Name="Scale" />
+            </StackPanel>
+        </StackPanel>
+    </StackPanel>
 </Window>
