@@ -31,8 +31,7 @@ public partial class MainWindow : Window
         for (var x = 0; x < Bitmap.Size.Width; x++)
         for (var y = 0; y < Bitmap.Size.Height; y++)
         {
-            var result = x * y % modulo;
-            var scaled = uint.MaxValue * result / (modulo - 1);
+            var scaled = uint.MaxValue * Calculate(x, y, z, 1) / (z - 1);
             brush.Color = Color.FromUInt32((uint)scaled);
             dc.FillRectangle(brush, new Rect(x * scale, y * scale, scale, scale));
         }
@@ -41,5 +40,14 @@ public partial class MainWindow : Window
 
         // Forces rendering of image
         Image.Source = Bitmap;
+    }
+
+    private static long Calculate(int x, int y, int z, int algorithm)
+    {
+        return algorithm switch
+        {
+            1 => x * y % z,
+            _ => x * y
+        };
     }
 }
